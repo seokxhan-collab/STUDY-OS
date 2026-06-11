@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study OS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <h2 class="logo">
+            STUDY OS
+        </h2>
+
+        <button
+    class="menu-btn"
+    onclick="showDashboard()"
+>
+    📚 대시보드
+</button>
+
+       <button
+    class="menu-btn"
+    onclick="showExams()"
+>
+    📅 일정
+</button>
+
+        <button
+    class="menu-btn"
+    onclick="showTasks()"
+>
+    ✅ 할일
+</button>
+
+        <button
+    class="menu-btn"
+    onclick="showStudy()"
+>
+    ⏱ 공부시간
+</button>
+
+<button
+    class="menu-btn"
+    onclick="showAnalytics()"
+>
+    📈 분석
+</button>
+
+      <button
+    class="menu-btn"
+    onclick="showCoach()"
+>
+    🤖 AI 코치
+</button>
+
+<button
+    class="menu-btn"
+    onclick="showProfile()"
+>
+    👤 내 프로필
+</button>
+
+    </aside>
+
+    <div class="container">
+       <header class="top-bar dashboard-header">
+
+    <div>
+
+        <div class="window-controls">
+
+            <div class="window-btn red"></div>
+
+            <div class="window-btn yellow"></div>
+
+            <div class="window-btn green"></div>
+
+        </div>
+
+        <h1>STUDY OS</h1>
+
+        <p id="currentDate"></p>
+
+    </div>
+
+    <div class="time-box">
+        <span id="currentTime"></span>
+    </div>
+
+</header>
+
+        <!-- AI 브리핑 -->
+
+       <section class="card page dashboard-page">
+            <h2>🤖 AI 브리핑</h2>
+
+            <p id="aiBriefing">
+                오늘의 학습 데이터를 분석중...
+            </p>
+        </section>
+
+          <!-- D-DAY -->
+
+        <section class="card page dashboard-page">
+            <h2>📅 D-DAY</h2>
+
+            <ul id="upcomingExamList"></ul>
+        </section>
+
+        <!-- 오늘 현황 -->
+
+       <section class="card page dashboard-page">
+            <h2>📊 오늘 현황</h2>
+
+            <div class="stats-grid">
+
+                <div class="stat-box">
+                    <h3>총 할일</h3>
+                    <p id="totalHomework">0</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>완료</h3>
+                    <p id="completedHomework">0</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>남은 할일</h3>
+                    <p id="remainingHomework">0</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>오늘 공부시간</h3>
+                    <p id="todayStudyTime">0분</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 할일 -->
+
+        <section class="card page task-page">
+            <h2>✅ 할일</h2>
+
+            <div class="input-group">
+
+               <select id="subjectSelect">
+    <option value="국어">국어</option>
+    <option value="확통">확통</option>
+    <option value="영어">영어</option>
+    <option value="생윤">생윤</option>
+    <option value="사문">사문</option>
+</select>
+
+                <input
+                    type="text"
+                    id="homeworkInput"
+                    placeholder="할일을  입력하세요"
+                >
+
+                <input
+                    type="date"
+                    id="homeworkDeadline"
+                >
+
+                <select id="homeworkPriority">
+
+                    <option value="높음">높음</option>
+                    <option value="보통">보통</option>
+                    <option value="낮음">낮음</option>
+
+                </select>
+
+                <button onclick="addHomework()">
+                    추가
+                </button>
+
+            </div>
+
+            <ul id="homeworkList"></ul>
+
+        </section>
+
+        <!-- 일정 -->
+
+        <section class="card page exam-page">
+
+            <h2>📅 일정</h2>
+
+            <div class="input-group">
+                <select id="examSubject">
+                    <option value="국어">국어</option>
+                    <option value="확통">확통</option>
+                    <option value="영어">영어</option>
+                    <option value="생윤">생윤</option>
+                    <option value="사문">사문</option>
+                </select>
+
+              <input
+    type="text"
+    id="examName"
+    placeholder="시험 이름"
+>
+
+<input
+    type="date"
+    id="examDate"
+>
+
+
+                <button onclick="addExam()">
+                    시험 추가
+                </button>
+
+            </div>
+
+            <ul id="examList"></ul>
+
+        </section>
+
+        <!-- 공부시간 -->
+
+      <section class="card page study-page">
+         <h2>⏱ 공부시간</h2>
+
+          <select id="timerSubject">
+
+    <option value="국어">국어</option>
+    <option value="확통">확통</option>
+    <option value="영어">영어</option>
+    <option value="생윤">생윤</option>
+    <option value="사문">사문</option>
+</select>
+            <div class="timer-controls">
+
+                <button onclick="startTimer()">
+                    시작
+                </button>
+
+                <button onclick="pauseTimer()">
+                    일시정지
+                </button>
+
+                <button onclick="stopTimer()">
+                    종료
+                </button>
+
+            </div>
+
+            <h3 id="timerDisplay">
+                00:00:00
+            </h3>
+
+        </section>
+
+        <!-- 과목 분석 -->
+
+        <section class="card page analytics-page">
+    <h2>📈 과목 분석</h2>
+
+            <div id="subjectStats">
+
+                과목별 데이터 준비중...
+
+            </div>
+
+        </section>
+<section class="card page coach-page">
+
+    <h2>🤖 AI 코치</h2>
+
+    <div class="coach-box">
+
+        <textarea
+            id="coachInput"
+            placeholder="예: 오늘 뭐 공부해야 돼?"
+        ></textarea>
+
+        <button onclick="askCoach()">
+            분석 요청
+        </button>
+
+       <div id="coachAnswer">
+
+    AI 분석 대기중...
+
+</div>
+
+<button onclick="runAIAnalysis()">
+    📊 학습 분석 실행
+</button>
+
+    </div>
+
+</section>
+<section class="card page profile-page">
+
+    <h2>👤 내 프로필</h2>
+
+    <div class="input-group">
+
+
+        <input
+            type="text"
+            id="targetUniversity"
+            placeholder="목표 대학"
+        >
+
+        <input
+            type="text"
+            id="targetMajor"
+            placeholder="목표 학과"
+        >
+
+        <input
+            type="number"
+            step="0.1"
+            id="currentGrade"
+            placeholder="현재 평균등급"
+        >
+
+        <input
+            type="number"
+            step="0.1"
+            id="targetGrade"
+            placeholder="목표 등급"
+        >
+
+        <button onclick="saveProfile()">
+            저장
+        </button>
+
+    </div>
+
+    <div id="profileSummary">
+
+        프로필을 입력하세요.
+
+    </div>
+
+
+<h3>📅 학원 시간표</h3>
+
+<div class="input-group">
+
+    <select id="scheduleDay">
+
+        <option value="월">월</option>
+        <option value="화">화</option>
+        <option value="수">수</option>
+        <option value="목">목</option>
+        <option value="금">금</option>
+        <option value="토">토</option>
+        <option value="일">일</option>
+
+    </select>
+
+    <input
+        type="time"
+        id="scheduleStart"
+    >
+
+    <input
+        type="time"
+        id="scheduleEnd"
+    >
+
+    <input
+        type="text"
+        id="scheduleContent"
+        placeholder="예: 수학학원"
+    >
+
+    <button onclick="addSchedule()">
+        추가
+    </button>
+
+</div>
+
+<ul id="scheduleList"></ul>
+
+
+</section>
+        </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

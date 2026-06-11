@@ -1,0 +1,601 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --bg: #0f1117;
+    --card: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.12);
+
+    --text: #ffffff;
+    --subtext: #b7bcc8;
+
+    --blue: #4a90ff;
+    --green: #32d74b;
+    --orange: #ff9f0a;
+    --red: #ff453a;
+
+}
+
+body {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f1117,
+            #171b25
+        );
+
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+
+    min-height: 100vh;
+
+    padding: 30px;
+
+}
+
+.container {
+
+    max-width: 1400px;
+    margin: 0 auto;
+
+}
+
+.top-bar {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+.top-bar h1 {
+
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+
+}
+
+#currentDate {
+
+    color: var(--subtext);
+
+}
+
+.time-box {
+
+    font-size: 1.2rem;
+
+    padding: 12px 20px;
+
+    border-radius: 16px;
+
+    background: var(--card);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+
+}
+
+.card {
+
+    background: var(--card);
+
+    backdrop-filter: blur(25px);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+}
+
+.card h2 {
+
+    margin-bottom: 20px;
+
+    font-size: 1.3rem;
+
+}
+
+.ai-card {
+
+    border-left: 4px solid var(--blue);
+
+}
+
+#aiBriefing {
+
+    color: var(--subtext);
+
+    line-height: 1.8;
+
+}
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px,1fr));
+
+    gap: 15px;
+
+}
+
+.stat-box {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    text-align: center;
+
+}
+
+.stat-box h3 {
+
+    font-size: 0.95rem;
+
+    color: var(--subtext);
+
+    margin-bottom: 10px;
+
+}
+
+.stat-box p {
+
+    font-size: 1.8rem;
+    font-weight: bold;
+
+}
+
+.input-group {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+input,
+select {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 12px 14px;
+
+    outline: none;
+
+    font-size: 0.95rem;
+
+}
+
+input::placeholder {
+
+    color: #9097a6;
+
+}
+
+button {
+
+    background: var(--blue);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 12px 18px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    font-weight: 600;
+
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    opacity: 0.9;
+
+}
+
+ul {
+
+    list-style: none;
+
+}
+
+li {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    margin-bottom: 10px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border-radius: 14px;
+
+}
+
+.timer-controls {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin: 15px 0;
+
+}
+
+#timerDisplay {
+
+    font-size: 2rem;
+
+    text-align: center;
+
+    margin-top: 10px;
+
+}
+
+#goalDisplay {
+
+    margin-top: 15px;
+
+    color: var(--subtext);
+
+}
+
+#upcomingExamList li {
+
+    border-left:
+        4px solid var(--orange);
+
+}
+
+#examList li {
+
+    border-left:
+        4px solid var(--red);
+
+}
+
+#homeworkList li {
+
+    border-left:
+        4px solid var(--green);
+
+}
+
+#subjectStats {
+
+    color: var(--subtext);
+
+    line-height: 2;
+
+}
+
+::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255,255,255,0.15);
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+@media (max-width: 768px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .top-bar {
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+    .input-group {
+
+        flex-direction: column;
+
+    }
+
+    button,
+    input,
+    select {
+
+        width: 100%;
+
+    }
+
+    .stat-box p {
+
+        font-size: 1.4rem;
+
+    }
+
+}
+select {
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+}
+
+select option {
+
+    background: #ffffff;
+
+    color: #000000;
+
+}
+.app-layout {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+.sidebar {
+
+    width: 260px;
+
+    padding: 30px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    backdrop-filter:
+        blur(30px);
+
+    border-right:
+        1px solid rgba(255,255,255,0.08);
+
+}
+
+.logo {
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin-bottom: 40px;
+
+}
+
+.menu-btn {
+
+    background:
+        transparent;
+
+    color: white;
+
+    border: none;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+}
+
+.menu-btn:hover {
+
+    background:
+        rgba(255,255,255,0.1);
+
+}
+.page {
+    display: none;
+}
+/* =========================
+   macOS Sonoma Theme
+   ========================= */
+
+body {
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #020617
+    );
+
+}
+
+.container {
+
+    padding: 35px;
+
+}
+
+.top-bar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+
+}
+
+.top-bar h1 {
+
+    font-size: 2.4rem;
+
+    font-weight: 700;
+
+}
+
+#currentDate {
+
+    margin-top: 8px;
+
+    opacity: 0.7;
+
+}
+
+.card {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    backdrop-filter:
+        blur(30px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 28px;
+
+}
+
+.sidebar {
+
+    background:
+        rgba(255,255,255,0.04);
+
+    backdrop-filter:
+        blur(30px);
+
+}
+/* =========================
+   Dashboard Layout Fix
+   ========================= */
+
+
+.container {
+
+    flex: 1;
+
+    max-width: none;
+
+    width: 100%;
+
+}
+
+.card {
+
+    width: 100%;
+
+}
+.time-box {
+
+    min-width: 140px;
+
+    text-align: center;
+
+}
+.coach-box {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+#coachInput {
+
+    width: 100%;
+
+    min-height: 150px;
+
+    resize: vertical;
+
+}
+
+#coachAnswer {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    line-height: 1.8;
+
+}
